@@ -1,0 +1,168 @@
+<html><head><base href="." /><title>Brielee Lu - Artist Portfolio</title><style>
+:root {
+  --rothko-blue: #001eff;
+  --rothko-light-blue: #ff3300;
+  --rothko-dark-blue: #c4a1f0;
+  --rothko-black: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--rothko-black);
+  color: #fff;
+  font-family: 'Verdana', sans-serif;
+  line-height: 1.6;
+}
+
+.header {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.rothko-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.color-block {
+  transition: all 0.5s ease;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.block-1 {
+  background: var(--rothko-blue);
+  height: 45%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.block-2 {
+  background: var(--rothko-light-blue);
+  height: 30%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.block-3 {
+  background: var(--rothko-dark-blue);
+  height: 25%;
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.name {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  transform: none;
+  font-size: 2rem;
+  text-align: left;
+  z-index: 10;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.content {
+  padding: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  font-weight: 300;
+}
+
+nav a:hover {
+  color: var(--rothko-light-blue);
+}
+
+h2, h3 {
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header class="header">
+    <h1 class="name">Brielee Lu</h1>
+    <div class="rothko-hero">
+      <div class="color-block block-1"></div>
+      <div class="color-block block-2"></div>
+      <div class="color-block block-3"></div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section id="about">
+      <h2>>-_-<</h2>
+      <p>early stage venture capital,
+        art, and
+        fashion.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Reach Me</h2>
+      <p>I want to learn from you.</p>
+      <p>Email: brieleelu@gmail.com</p>
+      <p>Currently: New York City</p>
+    </section>
+  </main>
+
+<script>
+document.querySelectorAll('nav a').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const section = document.querySelector(this.getAttribute('href'));
+    section.scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Add parallax effect to Rothko blocks
+window.addEventListener('scroll', () => {
+  const blocks = document.querySelectorAll('.color-block');
+  const scrolled = window.pageYOffset;
+  
+  blocks.forEach((block, index) => {
+    block.style.transform = `translateY(${scrolled * (0.1 * (index + 1))}px)`;
+  });
+});
+</script>
+</body></html>
